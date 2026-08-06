@@ -19,8 +19,16 @@ class ExecutorRuntime:
 
     def start(self):
         self.logger.info(f'Starting executor {self.executor.id}')
-        self.executor.start()
+        try:
+            self.executor.start()
+        except Exception as e:
+            self.logger.error(f'Error starting executor {self.executor.id}: {e}')
+            raise InvalidExecutorError(self.executor.id)
 
     def stop(self):
         self.logger.info(f'Stopping executor {self.executor.id}')
-        self.executor.stop()
+        try:
+            self.executor.stop()
+        except Exception as e:
+            self.logger.error(f'Error stopping executor {self.executor.id}: {e}')
+            raise InvalidExecutorError(self.executor.id)
