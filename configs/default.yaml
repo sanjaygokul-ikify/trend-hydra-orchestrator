@@ -1,0 +1,6 @@
+# Default Configuration
+orchestrator:
+  port: 8080
+executors:
+  - name: default
+    type: python
